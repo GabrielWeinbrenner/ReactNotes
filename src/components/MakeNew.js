@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaCheck } from 'react-icons/fa';
 
 class MakeNew extends React.Component{
     constructor(props){
@@ -30,22 +31,24 @@ class MakeNew extends React.Component{
     }
     render(){
         return(
-            <div id="createNew">
+            <div id="note">
                 <h1>Create New Note</h1>
                 <form onSubmit={this.handleSubmit}>
                     <label>
                         Title:
-                        <input type="text" value={this.state.titleVal} onChange={this.handleTitleChange}></input>
+                        <input className="titleInput" type="text" value={this.state.titleVal} onChange={this.handleTitleChange}></input>
                     </label>
+                    <br />
                     <label>
                         Note:
-                        <input type="text" value={this.state.noteVal} onChange={this.handleNoteChange}></input>
+                        <textarea type="text" value={this.state.noteVal} onChange={this.handleNoteChange}></textarea>
                     </label>
+                    <br />
                     <label>
                         Author:
                         <input type="text" value={this.state.authorVal} onChange={this.handleAuthorChange}></input>
                     </label>
-                    <input type="submit" className="btn btn-success"value="Submit"></input>
+                    <button type="submit" className="btn btn-success" value="Submit"><FaCheck/></button>
                 </form>
             </div>
         )

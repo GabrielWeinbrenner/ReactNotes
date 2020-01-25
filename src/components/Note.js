@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaCheck, FaTimesCircle, FaTrashAlt} from "react-icons/fa";
 
 
 class Note extends React.Component{
@@ -63,8 +64,9 @@ class Note extends React.Component{
                         <br />
                         <input type="text" value={this.state.author} onChange={this.handleAuthorChange}></input>
                         <br />
-                        <button type="submit" value="Submit">Submit</button>
-                        <button value="Cancel" onClick={this.handleCancel}>Cancel</button>
+                        <button className="btn btn-danger"><FaTrashAlt /></button>
+                        <button type="submit" className="btn btn-success" value="Submit"><FaCheck/></button>
+                        <button value="Cancel" className="btn btn-warning" onClick={this.handleCancel}><FaTimesCircle/></button>
                     </form>
                 </div>
             )
