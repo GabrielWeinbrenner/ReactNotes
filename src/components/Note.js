@@ -9,7 +9,8 @@ class Note extends React.Component{
             title: this.props.title,
             note: this.props.note,
             author: this.props.author,
-            onEdit: false
+            onEdit: false,
+            componentShow: true
         }
     }
     handleTitleChange = (e) => {
@@ -42,34 +43,43 @@ class Note extends React.Component{
         });
     }
 
+    handleTrash = (e) => {
+        this.setState({
+            componentShow: false
+        })
+    }
+
     render(){
-        if(this.state.onEdit === false){
-            return(
-                <div id="note" onClick={() => this.setState({onEdit: true, pastState: this.state})}> 
-                    <h1>{this.state.title}</h1>
-                    <p>{this.state.note}</p>
-                    <p>{this.state.author}</p>
-                </div>
-            )
+        if(this.state.componentShow){
+            if(this.state.onEdit === false){
+                return(
+                    <div id="note" onClick={() => this.setState({onEdit: true, pastState: this.state})}> 
+                        <h1>{this.state.title}</h1>
+                        <p>{this.state.note}</p>
+                        <p>{this.state.author}</p>
+                    </div>
+                )
+            }else{
+                return(
+                    <div id="note">
+                        <form onSubmit={this.handleSubmit}>
+                            <input id="titleInput"
+                                    type="text" 
+                                    value={this.state.title} 
+                                    onChange={this.handleTitleChange}></input>
+                            <br />
+                            <textarea type="text" value={this.state.note} onChange={this.handleNoteChange}></textarea>
+                            <br />
+                            <input type="text" value={this.state.author} onChange={this.handleAuthorChange}></input>
+                            <br />
+                            <button className="btn btn-danger" onClick={this.handleTrash}><FaTrashAlt /></button>
+                            <button type="submit" className="btn btn-success" value="Submit"><FaCheck/></button>
+                            <button value="Cancel" className="btn btn-warning" onClick={this.handleCancel}><FaTimesCircle/></button>
+                        </form>
+                    </div>)
+            }
         }else{
-            return(
-                <div id="note">
-                    <form onSubmit={this.handleSubmit}>
-                        <input id="titleInput"
-                                type="text" 
-                                value={this.state.title} 
-                                onChange={this.handleTitleChange}></input>
-                        <br />
-                        <textarea type="text" value={this.state.note} onChange={this.handleNoteChange}></textarea>
-                        <br />
-                        <input type="text" value={this.state.author} onChange={this.handleAuthorChange}></input>
-                        <br />
-                        <button className="btn btn-danger"><FaTrashAlt /></button>
-                        <button type="submit" className="btn btn-success" value="Submit"><FaCheck/></button>
-                        <button value="Cancel" className="btn btn-warning" onClick={this.handleCancel}><FaTimesCircle/></button>
-                    </form>
-                </div>
-            )
+            return null;
         }
 
     }
