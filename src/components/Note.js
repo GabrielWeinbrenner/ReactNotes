@@ -49,6 +49,7 @@ class Note extends React.Component{
         })
     }
 
+    
     render(){
         if(this.state.componentShow){
             if(this.state.onEdit === false){
