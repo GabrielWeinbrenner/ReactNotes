@@ -21,7 +21,7 @@ class App extends React.Component{
                     author: "John Smith"
                 }
             ],
-            showNewNoteEdit: true
+            showNewNoteEdit: false
         }
     }
     handleNewNote = (title,note,author) => {
